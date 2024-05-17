@@ -1,18 +1,56 @@
-import "./App.css";
+import React, { useState } from "react";
+import { IoSearch } from "react-icons/io5";
+import { IoOptionsOutline } from "react-icons/io5";
+import MovieDetails from "./MovieDetails";
+import { BiSolidCameraMovie } from "react-icons/bi";
 
-function App() {
+const App = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   return (
     <>
-      <h1 className="text-4xl bg-green-300  flex justify-center font-bold text-red-600 p-5 opacity-60 my-8 underline uppercase">
-        Hello world!
-      </h1>
-      <div class="flex-column">
-        <div class="basis-1/4 bg-green-300 h-12 w-6  sm:basis-1/3">01</div>
-        <div class="basis-1/ bg-red-300 h-12 w-6 md:basis-1/3">02</div>
-        <div class="basis-1/4 bg-blue-300 h-12 w-6 xl:basis-1/3">03</div>
+      <div className="min-h-screen bg-gray-100">
+        <header className="flex flex-row bg-slate-950 py-4">
+          <div className="container mx-auto flex flex-row ml-16">
+            <h1 className="text-4xl text-red-600 font-bold ">Tudoom</h1>
+            <BiSolidCameraMovie className="h-9 w-10 text-red-500 pl-2" />
+          </div>
+          <div className="flex gap-6 justify-end mt-0 mr-16">
+            <IoSearch className="h-9 w-10 text-red-600" />
+            <IoOptionsOutline className="text-red-600 h-9 w-10" />
+          </div>
+        </header>
+
+        <main className="bg-slate-900 m-0 py-16">
+          <div className="flex justify-center mb-8">
+            <input
+              type="text"
+              placeholder="Search movies..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+              className="px-4 py-2 bg-gray-600 border border-gray-300 rounded-l-md focus:outline-none"
+            />
+            <button className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-gray-900">
+              Search
+            </button>
+          </div>
+          {/* <MovieList searchQuery={searchQuery} /> */}
+
+          <MovieDetails searchQuery={searchQuery} />
+        </main>
+
+        <footer className="bg-gray-800 py-4">
+          <div className="container mx-auto text-center text-white">
+            &copy; 2024 Tudoom. All rights reserved.
+          </div>
+        </footer>
       </div>
     </>
   );
-}
+};
 
 export default App;
