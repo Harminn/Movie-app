@@ -38,6 +38,7 @@ const App = () => {
               Search
             </button>
           </div>
+
           {/* <MovieList searchQuery={searchQuery} /> */}
 
           <MovieDetails searchQuery={searchQuery} />
